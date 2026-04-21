@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | CampusHarmony</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body onload="checkAuth('admin'); loadAllComplaints();">
+    <nav class="navbar glass-card">
+        <div class="nav-logo">
+            <i class="fas fa-shield-alt"></i>
+            CampusHarmony Admin
+        </div>
+        <div class="nav-user">
+            <span>Administrator Access</span>
+            <button class="small-btn btn" style="margin-left: 20px; width: auto;" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="dashboard-header stagger-item" style="display: flex; justify-content: space-between; align-items: center; background: rgba(99, 102, 241, 0.05); padding: 40px; border-radius: 30px; margin-bottom: 50px; border: 1px solid var(--primary);">
+            <div style="flex: 1;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 15px;">Resolution Control Center</h2>
+                <p style="color: var(--text-dim); font-size: 1.1rem; max-width: 600px;">Monitor campus feedback in real-time. Your active management ensures student satisfaction and a smooth educational experience.</p>
+            </div>
+            <div class="illustration-box" style="margin-bottom: 0; animation-duration: 5s;">
+                <img src="admin-hero.png" alt="Admin Control" style="max-width: 250px;">
+            </div>
+        </div>
+
+        <div class="glass-card stagger-item" style="padding: 20px; margin-bottom: 30px; animation-delay: 0.2s;">
+            <div class="filter-bar">
+                <select id="filter-category" onchange="loadAllComplaints()">
+                    <option value="">All Categories</option>
+                    <option value="Hostel">Hostel</option>
+                    <option value="Mess">Mess</option>
+                    <option value="College">College</option>
+                </select>
+                <select id="filter-status" onchange="loadAllComplaints()">
+                    <option value="">All Statuses</option>
+                    <option value="Pending">Pending</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Resolved">Resolved</option>
+                </select>
+                <input type="text" id="filter-dept" placeholder="Filter by Dept" oninput="loadAllComplaints()">
+            </div>
+        </div>
+
+        <div id="all-complaints-list" class="stagger-item" style="animation-delay: 0.4s;">
+            <!-- Admin items will be injected here -->
+        </div>
+    </main>
+
+    <!-- Update Modal (Simplified with an overlay) -->
+    <div id="update-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:100; justify-content:center; align-items:center;">
+        <div class="glass-card" style="padding:30px; width:100%; max-width:500px;">
+            <h3>Update Complaint</h3>
+            <form id="update-form" style="margin-top:20px;">
+                <input type="hidden" id="update-id">
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="update-status">
+                        <option value="Pending">Pending</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Resolved">Resolved</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Admin Remarks</label>
+                    <textarea id="update-remark" rows="4"></textarea>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <button type="submit" class="btn">Save Changes</button>
+                    <button type="button" class="btn" style="background:#475569;" onclick="closeModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

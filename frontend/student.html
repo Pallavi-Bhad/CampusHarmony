@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard | CampusHarmony</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body onload="checkAuth('student'); loadMyComplaints();">
+    <nav class="navbar glass-card">
+        <div class="nav-logo">
+            <i class="fas fa-hand-holding-heart"></i>
+            CampusHarmony
+        </div>
+        <div class="nav-user">
+            <span id="user-display-name">Loading...</span>
+            <button class="small-btn btn" style="margin-left: 20px; width: auto;" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="dashboard-header stagger-item" style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); padding: 40px; border-radius: 30px; margin-bottom: 50px; border: 1px solid var(--border);">
+            <div style="flex: 1;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 10px;">Hello! How can we help you?</h2>
+                <p style="color: var(--text-dim); font-size: 1.1rem; max-width: 500px;">Share your feedback or report an issue. Our team is dedicated to creating a harmonious campus environment for you.</p>
+            </div>
+            <div class="illustration-box" style="margin-bottom: 0;">
+                <img src="student-hero.png" alt="Help" style="max-width: 250px;">
+            </div>
+        </div>
+
+        <div class="grid">
+            <!-- Submit Form -->
+            <div class="glass-card complaint-form-container stagger-item" style="animation-delay: 0.2s;">
+                <h3 style="margin-bottom: 20px;">Tell us what's on your mind</h3>
+                <form id="complaint-form">
+                    <div class="form-group">
+                        <label>Complaint Category</label>
+                        <select id="comp-category" required>
+                            <option value="Hostel">Hostel</option>
+                            <option value="Mess">Mess</option>
+                            <option value="College">College</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="comp-desc" rows="5" placeholder="Describe your issue in detail..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Submit Complaint</button>
+                </form>
+            </div>
+
+            <!-- List My Complaints -->
+            <div class="glass-card complaint-list-container stagger-item" style="animation-delay: 0.4s;">
+                <h3 style="margin-bottom: 20px;">Your recent feedback</h3>
+                <div id="my-complaints-list" style="margin-top: 20px;">
+                    <!-- Items will be injected here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
