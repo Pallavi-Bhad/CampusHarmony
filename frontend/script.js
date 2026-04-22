@@ -1,5 +1,4 @@
-
-const API_URL='https://campusharmony.onrender.com';
+const API_URL = 'http://localhost:5000/api';
 // --- AUTH HELPERS ---
 function saveUserData(data) {
     localStorage.setItem('cms_role', data.role);
